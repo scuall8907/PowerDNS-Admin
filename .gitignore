@@ -27,7 +27,6 @@ nosetests.xml
 
 flask
 config.py
-configs/production.py
 logfile.log
 log.txt
 pdns.db
