@@ -38,12 +38,7 @@ SESSION_TYPE = 'sqlalchemy'
 
 ### DATABASE - PostgreSQL
 ## Don't forget to uncomment the import in the top
-SQLALCHEMY_DATABASE_URI = 'postgres://{}:{}@{}/{}'.format(
-    urllib.parse.quote_plus(SQLA_DB_USER),
-    urllib.parse.quote_plus(SQLA_DB_PASSWORD),
-    SQLA_DB_HOST,
-    SQLA_DB_NAME
-)
+SQLALCHEMY_DATABASE_URI = f'postgresql://{SQLA_DB_USER}:{SQLA_DB_PASSWORD}@{SQLA_DB_HOST}/{SQLA_DB_NAME}'
 
 ### DATABASE - SQLite
 #SQLALCHEMY_DATABASE_URI = os.getenv('DATABASE_URI', 'sqlite:///' + os.path.join(basedir, 'pdns.db'))
