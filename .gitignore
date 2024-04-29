@@ -36,10 +36,10 @@ db_repository/*
 tmp/*
 
 node_modules
-powerdnsadmin/static/generated
-.webassets-cache
 .venv*
 venv*
 .pytest_cache
 .DS_Store
 yarn-error.log
+static/.webassets-cache/*
+static/generated/*
