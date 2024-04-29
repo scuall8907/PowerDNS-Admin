@@ -33,11 +33,7 @@ def create_app(config=None):
     app.wsgi_app = ProxyFix(app.wsgi_app)
 
     # Load config from env variables if using docker
-    if os.path.exists(os.path.join(app.root_path, 'docker_config.py')):
-        app.config.from_object('powerdnsadmin.docker_config')
-    else:
-        # Load default configuration
-        app.config.from_object('powerdnsadmin.default_config')
+    app.config.from_object(os.getenv('ENV_CONFIG', 'powerdnsadmin.default_config'))
 
     # Load config file from FLASK_CONF env variable
     if 'FLASK_CONF' in os.environ:
