@@ -141,6 +141,8 @@
                                 <p>Accounts</p>
                             </a>
                         </li>
+                    {% endif %}
+                    {% if current_user.role.name in ['Administrator'] %}
                         <li class="{{ 'nav-item active' if active_page == 'admin_users' else 'nav-item' }}">
                             <a href="{{ url_for('admin.manage_user') }}" class="nav-link">
                                 <i class="nav-icon fa-solid fa-users"></i>
@@ -175,20 +177,18 @@
                                         <p>Zone Records</p>
                                     </a>
                                 </li>
-                                {% if current_user.role.name == 'Administrator' %}
-                                    <li class="nav-item">
-                                        <a href="{{ url_for('admin.setting_pdns') }}" class="nav-link">
-                                            <i class="nav-icon fa-solid fa-server"></i>
-                                            <p>Server</p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="{{ url_for('admin.setting_authentication') }}" class="nav-link">
-                                            <i class="nav-icon fa-solid fa-user-shield"></i>
-                                            <p>Authentication</p>
-                                        </a>
-                                    </li>
-                                {% endif %}
+                                <li class="nav-item">
+                                    <a href="{{ url_for('admin.setting_pdns') }}" class="nav-link">
+                                        <i class="nav-icon fa-solid fa-server"></i>
+                                        <p>Server</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ url_for('admin.setting_authentication') }}" class="nav-link">
+                                        <i class="nav-icon fa-solid fa-user-shield"></i>
+                                        <p>Authentication</p>
+                                    </a>
+                                </li>
                             </ul>
                         </li>
                     {% endif %}
