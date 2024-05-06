@@ -251,7 +251,7 @@ def server_statistics():
 
 @admin_bp.route('/server/configuration', methods=['GET'])
 @login_required
-@operator_role_required
+@admin_role_required
 def server_configuration():
     if not Setting().get('pdns_api_url') or not Setting().get(
             'pdns_api_key') or not Setting().get('pdns_version'):
@@ -274,7 +274,7 @@ def server_configuration():
 @admin_bp.route('/user/edit/<user_username>', methods=['GET', 'POST'])
 @admin_bp.route('/user/edit', methods=['GET', 'POST'])
 @login_required
-@operator_role_required
+@admin_role_required
 def edit_user(user_username=None):
     if user_username:
         user = User.query.filter(User.username == user_username).first()
@@ -336,7 +336,7 @@ def edit_user(user_username=None):
 @admin_bp.route('/key/edit/<key_id>', methods=['GET', 'POST'])
 @admin_bp.route('/key/edit', methods=['GET', 'POST'])
 @login_required
-@operator_role_required
+@admin_role_required
 def edit_key(key_id=None):
     domains = Domain.query.all()
     accounts = Account.query.all()
@@ -421,7 +421,7 @@ def edit_key(key_id=None):
 
 @admin_bp.route('/manage-keys', methods=['GET', 'POST'])
 @login_required
-@operator_role_required
+@admin_role_required
 def manage_keys():
     if request.method == 'GET':
         try:
@@ -468,7 +468,7 @@ def manage_keys():
 
 @admin_bp.route('/manage-user', methods=['GET', 'POST'])
 @login_required
-@operator_role_required
+@admin_role_required
 def manage_user():
     if request.method == 'GET':
         roles = Role.query.all()
@@ -1356,7 +1356,7 @@ def history_table():  # ajax call data
 
 @admin_bp.route('/setting/basic', methods=['GET'])
 @login_required
-@operator_role_required
+@admin_role_required
 def setting_basic():
     settings = [
         'account_name_extra_chars',
@@ -1399,7 +1399,7 @@ def setting_basic():
 
 @admin_bp.route('/setting/basic/<path:setting>/edit', methods=['POST'])
 @login_required
-@operator_role_required
+@admin_role_required
 def setting_basic_edit(setting):
     jdata = request.json
     new_value = jdata['value']
@@ -1421,7 +1421,7 @@ def setting_basic_edit(setting):
 
 @admin_bp.route('/setting/basic/<path:setting>/toggle', methods=['POST'])
 @login_required
-@operator_role_required
+@admin_role_required
 def setting_basic_toggle(setting):
     result = Setting().toggle(setting)
     if (result):
@@ -1467,7 +1467,7 @@ def setting_pdns():
 
 @admin_bp.route('/setting/dns-records', methods=['GET', 'POST'])
 @login_required
-@operator_role_required
+@admin_role_required
 def setting_records():
     from powerdnsadmin.lib.settings import AppSettings
     if request.method == 'GET':
